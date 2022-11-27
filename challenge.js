@@ -85,7 +85,8 @@ export async function displayMenu() {
       case 6:
         // Mostrar por consola todos los datos de los alumnos que son chicas.
         const isFemale = students.filter(students => students.gender === 'female');
-        console.table(isFemale);
+        const totalFemale = isFemale.length > 0 ? console.table(isFemale) : "No hay alumnas en la clase"
+        console.log(totalFemale)
         break;
 
       case 7:
@@ -98,8 +99,8 @@ export async function displayMenu() {
 
       case 8:
         // Mostrar true o false por consola si todos los alumnos de la clase son chicas.
-        const allFemale = students.length > 0 ? students.every(students => students.gender === 'female') : false
-        console.log(allFemale);
+        const allFemales = students.length > 0 ? students.every(students => students.gender === 'female') : false
+        console.log(allFemales);
         break;
 
       case 9:
@@ -130,16 +131,15 @@ export async function displayMenu() {
       
       case 11:
         //Mostrar por consola el nombre de la persona más joven de la clase.
-        const youngestStudent = students.reduce((prev, curr) => prev.age < curr.age ? prev : curr);
-        console.log(youngestStudent);
+        const youngestStudent = students.length > 0 ? (students.reduce((prev, curr) => prev.age < curr.age ? prev : curr)): "No hay alumnos en la clase"
         console.log(youngestStudent.name);
         break;
 
       case 12:
         // Mostrar por consola la edad media de todos los alumnos de la clase.
         const studentAges = students.map(students => students.age);
-        const sumAllAges = studentAges.reduce((accum, n) => accum + n, 0);
-        const averageAge = Math.round(sumAllAges / students.length) ;
+        const sumAllAges = students.length > 0 ? studentAges.reduce((accum, n) => accum + n, 0): 0;
+        const averageAge = students.length > 0 ? Math.round(sumAllAges / students.length): 0;
         console.log(averageAge);
         break;
 
@@ -147,8 +147,8 @@ export async function displayMenu() {
         // Mostrar por consola la edad media de las chicas de la clase.
         isFemale = students.filter(students => students.gender === 'female');
         const femaleAges = isFemale.map(students => students.age);
-        const sumFemaleAges = femaleAges.reduce((accum, n) => accum + n, 0);
-        const averageFemaleAge = Math.round(sumFemaleAges / isFemale.length) ;
+        const sumFemaleAges = femaleAges.length > 0 ? femaleAges.reduce((accum, n) => accum + n, 0): 0;
+        const averageFemaleAge = femaleAges.length > 0 ? Math.round(sumFemaleAges / isFemale.length): 0;
         console.log(averageFemaleAge);
         break;
 
