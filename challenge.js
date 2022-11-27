@@ -36,6 +36,7 @@ function getUserOption() {
 
 export async function displayMenu() {
   let userNumber
+  let isFemale
 
   do {
 
@@ -84,9 +85,8 @@ export async function displayMenu() {
 
       case 6:
         // Mostrar por consola todos los datos de los alumnos que son chicas.
-        const isFemale = students.filter(students => students.gender === 'female');
+        isFemale = students.filter(students => students.gender === 'female');
         const totalFemale = isFemale.length > 0 ? console.table(isFemale) : "No hay alumnas en la clase"
-        console.log(totalFemale)
         break;
 
       case 7:
